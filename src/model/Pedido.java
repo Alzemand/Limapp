@@ -6,40 +6,25 @@
 package model;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
 
 /**
  *
  * @author edilson
  */
 @Entity
-
-
-@NamedQuery(name = "Cliente.listarTodos", query = "select c from Cliente c")
-public class Cliente implements Serializable {
+public class Pedido implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
-    private String cnpj;
-     private List<Cliente> clientes;
+    private String metragem;
+    private String data;
 
-    public List<Cliente> getClientes() {
-        return clientes;
-    }
-
-    public void setClientes(List<Cliente> clientes) {
-        this.clientes = clientes;
-    }
-
-     
     public Long getId() {
         return id;
     }
@@ -48,23 +33,22 @@ public class Cliente implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getMetragem() {
+        return metragem;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setMetragem(String metragem) {
+        this.metragem = metragem;
     }
 
-    public String getCnpj() {
-        return cnpj;
+    public String getData() {
+        return data;
     }
 
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
+    public void setData(String data) {
+        this.data = data;
     }
 
-    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -75,10 +59,10 @@ public class Cliente implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Cliente)) {
+        if (!(object instanceof Pedido)) {
             return false;
         }
-        Cliente other = (Cliente) object;
+        Pedido other = (Pedido) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -87,7 +71,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return this.nome;
+        return this.data;
     }
     
 }

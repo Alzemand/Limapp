@@ -6,46 +6,41 @@
 package model;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
 
 /**
  *
  * @author edilson
  */
 @Entity
-
-
-@NamedQuery(name = "Cliente.listarTodos", query = "select c from Cliente c")
-public class Cliente implements Serializable {
+public class Funcao implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String metro;
     private String nome;
-    private String cnpj;
-     private List<Cliente> clientes;
+    private String salario;
+    
 
-    public List<Cliente> getClientes() {
-        return clientes;
-    }
-
-    public void setClientes(List<Cliente> clientes) {
-        this.clientes = clientes;
-    }
-
-     
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getMetro() {
+        return metro;
+    }
+
+    public void setMetro(String metro) {
+        this.metro = metro;
     }
 
     public String getNome() {
@@ -56,12 +51,12 @@ public class Cliente implements Serializable {
         this.nome = nome;
     }
 
-    public String getCnpj() {
-        return cnpj;
+    public String getSalario() {
+        return salario;
     }
 
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
+    public void setSalario(String salario) {
+        this.salario = salario;
     }
 
     
@@ -75,10 +70,10 @@ public class Cliente implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Cliente)) {
+        if (!(object instanceof Funcao)) {
             return false;
         }
-        Cliente other = (Cliente) object;
+        Funcao other = (Funcao) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
