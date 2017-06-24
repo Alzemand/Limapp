@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -24,7 +25,19 @@ public class Pedido implements Serializable {
     private Long id;
     private String metragem;
     private String data;
+    @ManyToOne
+    private Cliente cliente;
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    
+    
     public Long getId() {
         return id;
     }

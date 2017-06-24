@@ -6,12 +6,16 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -29,16 +33,17 @@ public class Cliente implements Serializable {
     private Long id;
     private String nome;
     private String cnpj;
-     private List<Cliente> clientes;
+    @OneToMany (mappedBy = "cliente", cascade = CascadeType.ALL)
+    private List<Pedido> pedido;
 
-    public List<Cliente> getClientes() {
-        return clientes;
+    public List<Pedido> getPedido() {
+        return pedido;
     }
 
-    public void setClientes(List<Cliente> clientes) {
-        this.clientes = clientes;
+    public void setPedido(List<Pedido> pedido) {
+        this.pedido = pedido;
     }
-
+    
      
     public Long getId() {
         return id;

@@ -11,13 +11,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-import model.Cliente;
+import model.Empregado;
 
 /**
  *
  * @author edilson
  */
-public class daoCliente implements IDAO {
+public class daoEmpregado implements IDAO {
 
     public void CloseConnection() throws SQLException {
         ConexaoDAO.getConnection().close();
@@ -44,8 +44,8 @@ public class daoCliente implements IDAO {
     public void excluir(Integer o) throws SQLException {
 
         ConexaoDAO.getConnection().getTransaction().begin();
-        Cliente c = ConexaoDAO.getConnection().find(Cliente.class, o);
-        ConexaoDAO.getConnection().remove(c);
+        Empregado e = ConexaoDAO.getConnection().find(Empregado.class, o);
+        ConexaoDAO.getConnection().remove(e);
         ConexaoDAO.getConnection().getTransaction().commit();
 
     }
@@ -53,8 +53,8 @@ public class daoCliente implements IDAO {
     @Override
     public List listarTodos() throws SQLException {
 
-        TypedQuery<Cliente> query = ConexaoDAO.getConnection().createQuery("SELECT c FROM Cliente c", Cliente.class);
-        List<Cliente> lista = query.getResultList();
+        TypedQuery<Empregado> query = ConexaoDAO.getConnection().createQuery("SELECT e FROM Empregado e", Empregado.class);
+        List<Empregado> lista = query.getResultList();
         return lista;
     }
 }

@@ -6,35 +6,35 @@
  */
 package controller;
 
-import dao.daoCliente;
+import dao.daoPedido;
 import java.sql.SQLException;
 import java.util.List;
-import model.Cliente;
+import model.Pedido;
 
 /**
  *
  * @author edilson
  */
-public class ControleCliente {
-     dao.daoCliente daoCliente = new daoCliente();
+public class ControlePedido {
+     dao.daoPedido daoPedido = new daoPedido();
     
-    public void cadastrar(Cliente o) throws SQLException {
-        daoCliente.cadastrar(o);
+    public void cadastrar(Pedido o) throws SQLException {
+        daoPedido.cadastrar(o);
         
     }
     
     public void excluir (Integer o)  throws SQLException {
-        daoCliente.excluir(o);
+        daoPedido.excluir(o);
     
     }
     
-    public void alterar(Cliente o) throws SQLException {
-        daoCliente.alterar(o);
+    public void alterar(Pedido o) throws SQLException {
+        daoPedido.alterar(o);
     
     }
      
     public List listarTodos() throws SQLException{
-        return daoCliente.listarTodos();
+        return daoPedido.listarTodos();
     
     }
 }
