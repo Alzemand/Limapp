@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/edilson/Projetos/NetBeansProjects/Limapp/src/model/Empregado.java</file>
+            <file>file:/home/edilson/Projetos/NetBeansProjects/Limapp/src/gui/guiCliente.java</file>
             <file>file:/home/edilson/Projetos/NetBeansProjects/Limapp/src/model/Cliente.java</file>
-            <file>file:/home/edilson/Projetos/NetBeansProjects/Limapp/src/model/Servico.java</file>
             <file>file:/home/edilson/Projetos/NetBeansProjects/Limapp/src/model/Pedido.java</file>
+            <file>file:/home/edilson/Projetos/NetBeansProjects/Limapp/src/model/Funcao.java</file>
+            <file>file:/home/edilson/Projetos/NetBeansProjects/Limapp/src/META-INF/persistence.xml</file>
         </group>
     </open-files>
 </project-private>

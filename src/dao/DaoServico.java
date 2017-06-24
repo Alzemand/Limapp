@@ -11,50 +11,50 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-import model.Empregado;
+import model.Servico;
 
 /**
  *
  * @author edilson
  */
-public class daoEmpregado implements IDAO {
+public class DaoServico implements IDAO {
 
     public void CloseConnection() throws SQLException {
-        ConexaoDAO.getConnection().close();
+        DaoConexao.getConnection().close();
     }
 
     @Override
     public void cadastrar(Object o) throws SQLException {
-        ConexaoDAO.getConnection().getTransaction().begin();
-        ConexaoDAO.getConnection().persist(o);
-        ConexaoDAO.getConnection().getTransaction().commit();
+        DaoConexao.getConnection().getTransaction().begin();
+        DaoConexao.getConnection().persist(o);
+        DaoConexao.getConnection().getTransaction().commit();
 
     }
 
     @Override
     public void alterar(Object o) throws SQLException {
 
-        ConexaoDAO.getConnection().getTransaction().begin();
-        ConexaoDAO.getConnection().merge(o);
-        ConexaoDAO.getConnection().getTransaction().commit();
+        DaoConexao.getConnection().getTransaction().begin();
+        DaoConexao.getConnection().merge(o);
+        DaoConexao.getConnection().getTransaction().commit();
 
     }
 
     @Override
     public void excluir(Integer o) throws SQLException {
 
-        ConexaoDAO.getConnection().getTransaction().begin();
-        Empregado e = ConexaoDAO.getConnection().find(Empregado.class, o);
-        ConexaoDAO.getConnection().remove(e);
-        ConexaoDAO.getConnection().getTransaction().commit();
+        DaoConexao.getConnection().getTransaction().begin();
+        Servico s = DaoConexao.getConnection().find(Servico.class, o);
+        DaoConexao.getConnection().remove(s);
+        DaoConexao.getConnection().getTransaction().commit();
 
     }
 
     @Override
     public List listarTodos() throws SQLException {
 
-        TypedQuery<Empregado> query = ConexaoDAO.getConnection().createQuery("SELECT e FROM Empregado e", Empregado.class);
-        List<Empregado> lista = query.getResultList();
+        TypedQuery<Servico> query = DaoConexao.getConnection().createQuery("SELECT s FROM Servico s", Servico.class);
+        List<Servico> lista = query.getResultList();
         return lista;
     }
 }

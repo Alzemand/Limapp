@@ -11,50 +11,50 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-import model.Funcao;
+import model.Cliente;
 
 /**
  *
  * @author edilson
  */
-public class daoFuncao implements IDAO {
+public class DaoCliente implements IDAO {
 
     public void CloseConnection() throws SQLException {
-        ConexaoDAO.getConnection().close();
+        DaoConexao.getConnection().close();
     }
 
     @Override
     public void cadastrar(Object o) throws SQLException {
-        ConexaoDAO.getConnection().getTransaction().begin();
-        ConexaoDAO.getConnection().persist(o);
-        ConexaoDAO.getConnection().getTransaction().commit();
+        DaoConexao.getConnection().getTransaction().begin();
+        DaoConexao.getConnection().persist(o);
+        DaoConexao.getConnection().getTransaction().commit();
 
     }
 
     @Override
     public void alterar(Object o) throws SQLException {
 
-        ConexaoDAO.getConnection().getTransaction().begin();
-        ConexaoDAO.getConnection().merge(o);
-        ConexaoDAO.getConnection().getTransaction().commit();
+        DaoConexao.getConnection().getTransaction().begin();
+        DaoConexao.getConnection().merge(o);
+        DaoConexao.getConnection().getTransaction().commit();
 
     }
 
     @Override
     public void excluir(Integer o) throws SQLException {
 
-        ConexaoDAO.getConnection().getTransaction().begin();
-        Funcao f = ConexaoDAO.getConnection().find(Funcao.class, o);
-        ConexaoDAO.getConnection().remove(f);
-        ConexaoDAO.getConnection().getTransaction().commit();
+        DaoConexao.getConnection().getTransaction().begin();
+        Cliente c = DaoConexao.getConnection().find(Cliente.class, o);
+        DaoConexao.getConnection().remove(c);
+        DaoConexao.getConnection().getTransaction().commit();
 
     }
 
     @Override
     public List listarTodos() throws SQLException {
 
-        TypedQuery<Funcao> query = ConexaoDAO.getConnection().createQuery("SELECT f FROM Funcao f", Funcao.class);
-        List<Funcao> lista = query.getResultList();
+        TypedQuery<Cliente> query = DaoConexao.getConnection().createQuery("SELECT c FROM Cliente c", Cliente.class);
+        List<Cliente> lista = query.getResultList();
         return lista;
     }
 }

@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
 /**
@@ -17,16 +18,17 @@ import javax.persistence.OneToOne;
  * @author edilson
  */
 @Entity
+@NamedQuery(name = "Funcao.listar", query = "select f from Funcao f")
 public class Funcao implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String metro;
     private String nome;
     private String salario;
-    @OneToOne
+    @OneToOne(mappedBy = "funcao")
     private Empregado empregado;
 
     public Empregado getEmpregado() {
@@ -38,11 +40,11 @@ public class Funcao implements Serializable {
     }
     
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

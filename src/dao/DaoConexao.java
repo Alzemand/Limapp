@@ -14,21 +14,21 @@ import javax.persistence.Persistence;
  *
  * @author edilson
  */
-public class ConexaoDAO {
+public class DaoConexao {
 
     private static EntityManager jpaconexao = null;
 
-    private ConexaoDAO() throws SQLException {
+    private DaoConexao() throws SQLException {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("limappPU");
-        ConexaoDAO.jpaconexao = emf.createEntityManager();
+        DaoConexao.jpaconexao = emf.createEntityManager();
     }
 
     public static EntityManager getConnection() throws SQLException {
-        if (ConexaoDAO.jpaconexao == null) {
-            new ConexaoDAO();
-            return ConexaoDAO.jpaconexao;
+        if (DaoConexao.jpaconexao == null) {
+            new DaoConexao();
+            return DaoConexao.jpaconexao;
         } else {
-            return ConexaoDAO.jpaconexao;
+            return DaoConexao.jpaconexao;
         }
     }
 }

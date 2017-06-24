@@ -6,7 +6,7 @@
  */
 package controller;
 
-import dao.daoCliente;
+import dao.DaoCliente;
 import java.sql.SQLException;
 import java.util.List;
 import model.Cliente;
@@ -16,7 +16,7 @@ import model.Cliente;
  * @author edilson
  */
 public class ControleCliente {
-     dao.daoCliente daoCliente = new daoCliente();
+     dao.DaoCliente daoCliente = new DaoCliente();
     
     public void cadastrar(Cliente o) throws SQLException {
         daoCliente.cadastrar(o);

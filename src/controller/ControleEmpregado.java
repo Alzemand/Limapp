@@ -6,7 +6,7 @@
  */
 package controller;
 
-import dao.daoEmpregado;
+import dao.DaoEmpregado;
 import java.sql.SQLException;
 import java.util.List;
 import model.Empregado;
@@ -16,25 +16,25 @@ import model.Empregado;
  * @author edilson
  */
 public class ControleEmpregado {
-     dao.daoEmpregado daoEmpregado = new daoEmpregado();
+     dao.DaoEmpregado DaoEmpregado = new DaoEmpregado();
     
     public void cadastrar(Empregado o) throws SQLException {
-        daoEmpregado.cadastrar(o);
+        DaoEmpregado.cadastrar(o);
         
     }
     
     public void excluir (Integer o)  throws SQLException {
-        daoEmpregado.excluir(o);
+        DaoEmpregado.excluir(o);
     
     }
     
     public void alterar(Empregado o) throws SQLException {
-        daoEmpregado.alterar(o);
+        DaoEmpregado.alterar(o);
     
     }
      
     public List listarTodos() throws SQLException{
-        return daoEmpregado.listarTodos();
+        return DaoEmpregado.listarTodos();
     
     }
 }

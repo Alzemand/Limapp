@@ -17,43 +17,43 @@ import model.Pedido;
  *
  * @author edilson
  */
-public class daoPedido implements IDAO {
+public class DaoPedido implements IDAO {
 
     public void CloseConnection() throws SQLException {
-        ConexaoDAO.getConnection().close();
+        DaoConexao.getConnection().close();
     }
 
     @Override
     public void cadastrar(Object o) throws SQLException {
-        ConexaoDAO.getConnection().getTransaction().begin();
-        ConexaoDAO.getConnection().persist(o);
-        ConexaoDAO.getConnection().getTransaction().commit();
+        DaoConexao.getConnection().getTransaction().begin();
+        DaoConexao.getConnection().persist(o);
+        DaoConexao.getConnection().getTransaction().commit();
 
     }
 
     @Override
     public void alterar(Object o) throws SQLException {
 
-        ConexaoDAO.getConnection().getTransaction().begin();
-        ConexaoDAO.getConnection().merge(o);
-        ConexaoDAO.getConnection().getTransaction().commit();
+        DaoConexao.getConnection().getTransaction().begin();
+        DaoConexao.getConnection().merge(o);
+        DaoConexao.getConnection().getTransaction().commit();
 
     }
 
     @Override
     public void excluir(Integer o) throws SQLException {
 
-        ConexaoDAO.getConnection().getTransaction().begin();
-        Pedido p = ConexaoDAO.getConnection().find(Pedido.class, o);
-        ConexaoDAO.getConnection().remove(p);
-        ConexaoDAO.getConnection().getTransaction().commit();
+        DaoConexao.getConnection().getTransaction().begin();
+        Pedido p = DaoConexao.getConnection().find(Pedido.class, o);
+        DaoConexao.getConnection().remove(p);
+        DaoConexao.getConnection().getTransaction().commit();
 
     }
 
     @Override
     public List listarTodos() throws SQLException {
 
-        TypedQuery<Pedido> query = ConexaoDAO.getConnection().createQuery("SELECT p FROM Pedido p", Pedido.class);
+        TypedQuery<Pedido> query = DaoConexao.getConnection().createQuery("SELECT p FROM Pedido p", Pedido.class);
         List<Pedido> lista = query.getResultList();
         return lista;
     }

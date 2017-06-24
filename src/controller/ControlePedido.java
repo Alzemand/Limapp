@@ -6,7 +6,7 @@
  */
 package controller;
 
-import dao.daoPedido;
+import dao.DaoPedido;
 import java.sql.SQLException;
 import java.util.List;
 import model.Pedido;
@@ -16,7 +16,7 @@ import model.Pedido;
  * @author edilson
  */
 public class ControlePedido {
-     dao.daoPedido daoPedido = new daoPedido();
+     dao.DaoPedido daoPedido = new DaoPedido();
     
     public void cadastrar(Pedido o) throws SQLException {
         daoPedido.cadastrar(o);

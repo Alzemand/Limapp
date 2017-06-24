@@ -6,7 +6,7 @@
  */
 package controller;
 
-import dao.daoFuncao;
+import dao.DaoFuncao;
 import java.sql.SQLException;
 import java.util.List;
 import model.Funcao;
@@ -16,7 +16,7 @@ import model.Funcao;
  * @author edilson
  */
 public class ControleFuncao {
-     dao.daoFuncao daoFuncao = new daoFuncao();
+     dao.DaoFuncao daoFuncao = new DaoFuncao();
     
     public void cadastrar(Funcao o) throws SQLException {
         daoFuncao.cadastrar(o);
@@ -33,7 +33,7 @@ public class ControleFuncao {
     
     }
      
-    public List listarTodos() throws SQLException{
+    public List listar() throws SQLException{
         return daoFuncao.listarTodos();
     
     }
