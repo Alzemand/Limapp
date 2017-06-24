@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -24,7 +25,27 @@ public class Empregado implements Serializable {
     private Long id;
     private String matricula;
     private String nome;
+    @OneToOne
+    private Funcao funcao;
+    @OneToOne
+    private Servico servico;
 
+    public Servico getServico() {
+        return servico;
+    }
+
+    public void setServico(Servico servico) {
+        this.servico = servico;
+    }
+    
+    public Funcao getFuncao() {
+        return funcao;
+    }
+
+    public void setFuncao(Funcao funcao) {
+        this.funcao = funcao;
+    }    
+    
     public Long getId() {
         return id;
     }

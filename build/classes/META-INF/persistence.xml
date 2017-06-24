@@ -3,6 +3,10 @@
   <persistence-unit name="limappPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>model.Cliente</class>
+    <class>model.Empregado</class>
+    <class>model.Funcao</class>
+    <class>model.Pedido</class>
+    <class>model.Servico</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/limapp?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

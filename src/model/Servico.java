@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -24,6 +25,27 @@ public class Servico implements Serializable {
     private Long id;
     private String descricao;
     private String valormetro;
+    @OneToOne
+    private Empregado empregado;
+    @OneToOne
+    private Funcao funcao;
+
+    public Funcao getFuncao() {
+        return funcao;
+    }
+
+    public void setFuncao(Funcao funcao) {
+        this.funcao = funcao;
+    }
+
+    
+    public Empregado getEmpregado() {
+        return empregado;
+    }
+
+    public void setEmpregado(Empregado empregado) {
+        this.empregado = empregado;
+    }
     
 
     public Long getId() {

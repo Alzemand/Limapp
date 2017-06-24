@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -27,7 +28,17 @@ public class Pedido implements Serializable {
     private String data;
     @ManyToOne
     private Cliente cliente;
+    @OneToOne
+    private Servico servico;
 
+    public Servico getServico() {
+        return servico;
+    }
+
+    public void setServico(Servico servico) {
+        this.servico = servico;
+    }
+    
     public Cliente getCliente() {
         return cliente;
     }
