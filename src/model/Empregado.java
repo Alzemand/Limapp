@@ -19,10 +19,10 @@ import javax.persistence.OneToOne;
 @Entity
 public class Empregado implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final int serialVersionUID = (int) 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
     private String matricula;
     private String nome;
     @OneToOne
@@ -46,11 +46,11 @@ public class Empregado implements Serializable {
         this.funcao = funcao;
     }    
     
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

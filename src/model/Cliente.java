@@ -27,10 +27,10 @@ import javax.persistence.OneToMany;
 @NamedQuery(name = "Cliente.listarTodos", query = "select c from Cliente c")
 public class Cliente implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final int serialVersionUID = (int) 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String nome;
     private String cnpj;
     @OneToMany (mappedBy = "cliente", cascade = CascadeType.ALL)
@@ -43,13 +43,13 @@ public class Cliente implements Serializable {
     public void setPedido(List<Pedido> pedido) {
         this.pedido = pedido;
     }
-    
+ 
      
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
