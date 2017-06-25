@@ -96,7 +96,7 @@ public class Servico implements Serializable {
 
     @Override
     public String toString() {
-        return this.descricao;
+        return this.descricao + " Empregado: " + this.empregado + " Pedido: "+ this.pedido;
     }
     
 }

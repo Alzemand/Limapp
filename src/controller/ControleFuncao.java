@@ -6,9 +6,17 @@
  */
 package controller;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import dao.DaoConexao;
 import dao.DaoFuncao;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.util.List;
+import javax.persistence.TypedQuery;
 import model.Funcao;
 
 /**
@@ -37,4 +45,19 @@ public class ControleFuncao {
         return daoFuncao.listarTodos();
     
     }
+    
+    public void createPdf(String filename) throws DocumentException, FileNotFoundException, SQLException{
+
+
+    TypedQuery<Funcao> consulta = DaoConexao.getConnection().createQuery("Select f from Funcao f",Funcao.class);
+    List<Funcao> funcaes = consulta.getResultList();
+    Document document = new Document();        
+    PdfWriter.getInstance(document, new FileOutputStream(filename));        
+    document.open();        
+    document.add(new Paragraph("Pedido: "+ funcaes.size()));      
+    for(Funcao f : funcaes){
+        document.add(new Paragraph(f.getNome()+": Sálario: "+f.getSalario() + " Metragem: " + f.getMetro()));                  
+    }                
+    document.close();       
+}
 }

@@ -95,7 +95,7 @@ public class Funcao implements Serializable {
 
     @Override
     public String toString() {
-        return this.nome;
+        return this.nome + ": Salário de R$" + this.salario;
     }
     
 }

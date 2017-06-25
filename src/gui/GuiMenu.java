@@ -35,10 +35,15 @@ public class GuiMenu extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         bntEmpregado = new javax.swing.JButton();
         bntFuncao = new javax.swing.JButton();
+        bntRelatorioFuncao = new javax.swing.JButton();
+        bntRelatorioEmpregados = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         bntCliente = new javax.swing.JButton();
         bntPedido = new javax.swing.JButton();
         bntServico = new javax.swing.JButton();
+        bntRelatorioCliente = new javax.swing.JButton();
+        bntRelatorioPedidos = new javax.swing.JButton();
+        bntRelatorioServico = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
@@ -91,16 +96,34 @@ public class GuiMenu extends javax.swing.JFrame {
             }
         });
 
+        bntRelatorioFuncao.setText("Relatório de Funções");
+        bntRelatorioFuncao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntRelatorioFuncaoActionPerformed(evt);
+            }
+        });
+
+        bntRelatorioEmpregados.setText("Relatório de Empregados");
+        bntRelatorioEmpregados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntRelatorioEmpregadosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(bntFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(bntEmpregado, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(192, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(bntFuncao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bntRelatorioFuncao, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(bntEmpregado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bntRelatorioEmpregados, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,7 +132,11 @@ public class GuiMenu extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bntEmpregado)
                     .addComponent(bntFuncao))
-                .addGap(69, 69, 69))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bntRelatorioFuncao)
+                    .addComponent(bntRelatorioEmpregados))
+                .addGap(28, 28, 28))
         );
 
         jTabbedPane1.addTab("Supervisão", jPanel2);
@@ -128,10 +155,31 @@ public class GuiMenu extends javax.swing.JFrame {
             }
         });
 
-        bntServico.setText("Cadastro de Servico");
+        bntServico.setText("Cadastro de Serviço");
         bntServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bntServicoActionPerformed(evt);
+            }
+        });
+
+        bntRelatorioCliente.setText("Relatório de Clientes");
+        bntRelatorioCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntRelatorioClienteActionPerformed(evt);
+            }
+        });
+
+        bntRelatorioPedidos.setText("Relatório de Pedidos");
+        bntRelatorioPedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntRelatorioPedidosActionPerformed(evt);
+            }
+        });
+
+        bntRelatorioServico.setText("Relatório de Serviço");
+        bntRelatorioServico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntRelatorioServicoActionPerformed(evt);
             }
         });
 
@@ -141,11 +189,17 @@ public class GuiMenu extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(bntCliente)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addComponent(bntPedido)
-                .addGap(43, 43, 43)
-                .addComponent(bntServico)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(bntCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bntRelatorioCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(bntRelatorioPedidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bntPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bntServico)
+                    .addComponent(bntRelatorioServico))
                 .addGap(20, 20, 20))
         );
         jPanel3Layout.setVerticalGroup(
@@ -156,7 +210,12 @@ public class GuiMenu extends javax.swing.JFrame {
                     .addComponent(bntCliente)
                     .addComponent(bntPedido)
                     .addComponent(bntServico))
-                .addGap(64, 64, 64))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bntRelatorioCliente)
+                    .addComponent(bntRelatorioPedidos)
+                    .addComponent(bntRelatorioServico))
+                .addGap(29, 29, 29))
         );
 
         jTabbedPane1.addTab("Clientes", jPanel3);
@@ -204,6 +263,31 @@ public class GuiMenu extends javax.swing.JFrame {
         new GuiServico().setVisible(true);
     }//GEN-LAST:event_bntServicoActionPerformed
 
+    private void bntRelatorioFuncaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntRelatorioFuncaoActionPerformed
+        // TODO add your handling code here:
+        new RelatorioFuncao().setVisible(true);
+    }//GEN-LAST:event_bntRelatorioFuncaoActionPerformed
+
+    private void bntRelatorioEmpregadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntRelatorioEmpregadosActionPerformed
+        // TODO add your handling code here:
+        new RelatorioEmpregado().setVisible(true);
+    }//GEN-LAST:event_bntRelatorioEmpregadosActionPerformed
+
+    private void bntRelatorioClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntRelatorioClienteActionPerformed
+        // TODO add your handling code here:
+        new RelatorioCliente().setVisible(true);
+    }//GEN-LAST:event_bntRelatorioClienteActionPerformed
+
+    private void bntRelatorioPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntRelatorioPedidosActionPerformed
+        // TODO add your handling code here:
+        new RelatorioPedido().setVisible(true);
+    }//GEN-LAST:event_bntRelatorioPedidosActionPerformed
+
+    private void bntRelatorioServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntRelatorioServicoActionPerformed
+        // TODO add your handling code here:
+        new RelatorioServico().setVisible(true);
+    }//GEN-LAST:event_bntRelatorioServicoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -244,6 +328,11 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JButton bntEmpregado;
     private javax.swing.JButton bntFuncao;
     private javax.swing.JButton bntPedido;
+    private javax.swing.JButton bntRelatorioCliente;
+    private javax.swing.JButton bntRelatorioEmpregados;
+    private javax.swing.JButton bntRelatorioFuncao;
+    private javax.swing.JButton bntRelatorioPedidos;
+    private javax.swing.JButton bntRelatorioServico;
     private javax.swing.JButton bntServico;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

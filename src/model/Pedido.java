@@ -95,7 +95,7 @@ public class Pedido implements Serializable {
 
     @Override
     public String toString() {
-        return this.data;
+        return this.data + " Metragem: " + this.metragem + "/  Cliente: " + this.cliente;
     }
     
 }
