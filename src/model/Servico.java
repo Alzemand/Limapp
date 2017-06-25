@@ -28,14 +28,14 @@ public class Servico implements Serializable {
     @OneToOne
     private Empregado empregado;
     @OneToOne
-    private Funcao funcao;
+    private Pedido pedido;
 
-    public Funcao getFuncao() {
-        return funcao;
+    public Pedido getPedido() {
+        return pedido;
     }
 
-    public void setFuncao(Funcao funcao) {
-        this.funcao = funcao;
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
     

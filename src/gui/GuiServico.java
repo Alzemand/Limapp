@@ -6,32 +6,34 @@
 package gui;
 
 import controller.ControleEmpregado;
-import controller.ControleFuncao;
+import controller.ControlePedido;
+import controller.ControleServico;
 import java.sql.SQLException;
-import java.util.Iterator;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.Cliente;
 import model.Empregado;
 import model.Funcao;
+import model.Pedido;
+import model.Servico;
 
 /**
  *
  * @author edilson
  */
-public class GuiEmpregado extends javax.swing.JFrame {
+public class GuiServico extends javax.swing.JFrame {
 
+    private controller.ControlePedido controlePedido;
     private controller.ControleEmpregado controleEmpregado;
-    private controller.ControleFuncao controleFuncao;
-    
-    
-    public GuiEmpregado() {
+    /**
+     * Creates new form GuiPedido
+     */
+    public GuiServico() {
         initComponents();
         setLocationRelativeTo(null);
-        controleFuncao = new ControleFuncao();
+        controlePedido = new ControlePedido();
         controleEmpregado = new ControleEmpregado();
-               
     }
 
     /**
@@ -47,13 +49,14 @@ public class GuiEmpregado extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        txtValor = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        cboEmpregado = new javax.swing.JComboBox();
         bntGravar = new javax.swing.JButton();
-        txtNome = new javax.swing.JTextField();
-        txtMatricula = new javax.swing.JTextField();
-        txtId = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        cboFuncao = new javax.swing.JComboBox();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtDescricao = new javax.swing.JTextArea();
+        jLabel5 = new javax.swing.JLabel();
+        cboPedido = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -66,30 +69,30 @@ public class GuiEmpregado extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel4.setText("Cadastrar Empregado");
+        jLabel4.setText("Pedido de serviço");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(165, 165, 165)
                 .addComponent(jLabel4)
-                .addGap(150, 150, 150))
+                .addContainerGap(196, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(33, 33, 33)
                 .addComponent(jLabel4)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
-        jLabel1.setText("id:");
+        jLabel1.setText("valor:");
 
-        jLabel2.setText("Nome:");
+        jLabel2.setText("Descrição");
 
-        jLabel3.setText("Matricula:");
+        jLabel3.setText("Empregado:");
 
         bntGravar.setText("Gravar");
         bntGravar.addActionListener(new java.awt.event.ActionListener() {
@@ -98,10 +101,11 @@ public class GuiEmpregado extends javax.swing.JFrame {
             }
         });
 
-        txtId.setEditable(false);
-        txtId.setAutoscrolls(false);
+        txtDescricao.setColumns(20);
+        txtDescricao.setRows(5);
+        jScrollPane1.setViewportView(txtDescricao);
 
-        jLabel6.setText("Função: ");
+        jLabel5.setText("Pedido:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,27 +115,25 @@ public class GuiEmpregado extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(bntGravar))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addGap(41, 41, 41)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtNome)))
+                            .addComponent(txtValor)
+                            .addComponent(jScrollPane1)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel6))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtMatricula)
-                            .addComponent(cboFuncao, 0, 447, Short.MAX_VALUE))))
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cboEmpregado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(45, 45, 45)
+                        .addComponent(cboPedido, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -141,20 +143,20 @@ public class GuiEmpregado extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(cboFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                    .addComponent(cboEmpregado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(cboPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                 .addComponent(bntGravar)
                 .addContainerGap())
         );
@@ -162,37 +164,48 @@ public class GuiEmpregado extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bntGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntGravarActionPerformed
-        // TODO add your handling code here:
-        Empregado e = new Empregado();
-        e.setNome(txtNome.getText());
-        e.setMatricula(txtMatricula.getText());
-        e.setFuncao((Funcao) cboFuncao.getSelectedItem());
-        
-        try {
-            new ControleEmpregado().cadastrar(e);
-        } catch (SQLException ex) {
-            Logger.getLogger(GuiEmpregado.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        txtId.setText(e.getId().toString());
-        
-        JOptionPane.showMessageDialog(null, "Empregado: " + e.getNome() + " Cadastrado");
-        
-    }//GEN-LAST:event_bntGravarActionPerformed
-
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        cboFuncao.removeAllItems();
-
+        // TODO add your handling code here:
+        cboPedido.removeAllItems();
+        cboEmpregado.removeAllItems();
+        
         try {
-            for (Object cat : controleFuncao.listar()) {
-                cboFuncao.addItem(cat);
+            for (Object pedido : controlePedido.listarTodos()) {
+                cboPedido.addItem(pedido);
             }
 
         } catch (Exception ex) {
             Logger.getLogger(Funcao.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        try {
+            for (Object empregado : controleEmpregado.listarTodos()) {
+                cboEmpregado.addItem(empregado);
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(Funcao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }//GEN-LAST:event_formWindowActivated
+
+    private void bntGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntGravarActionPerformed
+
+        Servico s = new Servico();
+        s.setDescricao(txtDescricao.getText());
+        s.setValormetro(txtValor.getText());
+        s.setPedido((Pedido) cboPedido.getSelectedItem());
+        s.setEmpregado((Empregado) cboEmpregado.getSelectedItem());
+        
+        try {
+            new ControleServico().cadastrar(s);
+        } catch (SQLException ex) {
+            Logger.getLogger(GuiServico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        JOptionPane.showMessageDialog(null, "Serviço agendado");
+    }//GEN-LAST:event_bntGravarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,44 +218,43 @@ public class GuiEmpregado extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("GTK+".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GuiEmpregado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GuiEmpregado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GuiEmpregado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GuiEmpregado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GuiEmpregado().setVisible(true);
+                new GuiServico().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntGravar;
-    private javax.swing.JComboBox cboFuncao;
+    private javax.swing.JComboBox cboEmpregado;
+    private javax.swing.JComboBox cboPedido;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtId;
-    private javax.swing.JTextField txtMatricula;
-    private javax.swing.JTextField txtNome;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea txtDescricao;
+    private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 }

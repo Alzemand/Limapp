@@ -5,25 +5,32 @@
  */
 package gui;
 
-import controller.ControleFuncao;
+import controller.ControleCliente;
+import controller.ControlePedido;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.Cliente;
 import model.Funcao;
+import model.Pedido;
 
 /**
  *
  * @author edilson
  */
-public class GuiFuncao extends javax.swing.JFrame {
+public class GuiPedido extends javax.swing.JFrame {
 
+    private controller.ControlePedido controlePedido;
+    private controller.ControleCliente controleCliente;
     /**
-     * Creates new form GuiFuncao
+     * Creates new form GuiPedido
      */
-    public GuiFuncao() {
+    public GuiPedido() {
         initComponents();
         setLocationRelativeTo(null);
+        controlePedido = new ControlePedido();
+        controleCliente = new ControleCliente();
     }
 
     /**
@@ -39,47 +46,52 @@ public class GuiFuncao extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        txtMetragem = new javax.swing.JTextField();
+        txtData = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtFuncao = new javax.swing.JTextField();
-        txtMetro = new javax.swing.JTextField();
-        txtSalario = new javax.swing.JTextField();
-        bntgravar = new javax.swing.JButton();
+        cboCliente = new javax.swing.JComboBox();
+        bntGravar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBackground(java.awt.SystemColor.desktop);
 
         jLabel4.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel4.setText("Cadastrar Funções");
+        jLabel4.setText("Pedido");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(188, 188, 188)
+                .addGap(223, 223, 223)
                 .addComponent(jLabel4)
-                .addContainerGap(196, Short.MAX_VALUE))
+                .addContainerGap(225, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(44, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
                 .addComponent(jLabel4)
-                .addGap(39, 39, 39))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
-        jLabel1.setText("Nome da função:");
+        jLabel1.setText("Metragem:");
 
-        jLabel2.setText("Metro ²:");
+        jLabel2.setText("Data:");
 
-        jLabel3.setText("Salário:");
+        jLabel3.setText("Cliente:");
 
-        bntgravar.setText("Gravar");
-        bntgravar.addActionListener(new java.awt.event.ActionListener() {
+        bntGravar.setText("Gravar");
+        bntGravar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntgravarActionPerformed(evt);
+                bntGravarActionPerformed(evt);
             }
         });
 
@@ -91,19 +103,20 @@ public class GuiFuncao extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addGap(4, 4, 4)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtFuncao)
-                    .addComponent(txtMetro)
-                    .addComponent(txtSalario))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cboCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtMetragem)
+                            .addComponent(txtData)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(bntGravar)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bntgravar)
-                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,40 +125,52 @@ public class GuiFuncao extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(txtMetragem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtMetro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
-                .addComponent(bntgravar)
+                    .addComponent(cboCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addComponent(bntGravar)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bntgravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntgravarActionPerformed
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-        Funcao f = new Funcao();
-        f.setNome(txtFuncao.getText());
-        f.setSalario(txtSalario.getText());
-        f.setMetro(txtMetro.getText());
+        cboCliente.removeAllItems();
+
+        try {
+            for (Object cliente : controleCliente.listarTodos()) {
+                cboCliente.addItem(cliente);
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(Funcao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowActivated
+
+    private void bntGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntGravarActionPerformed
+        // TODO add your handling code here:
+        Pedido p = new Pedido();
+        p.setData(txtData.getText());
+        p.setMetragem(txtMetragem.getText());
+        p.setCliente((Cliente) cboCliente.getSelectedItem());
         
         try {
-            new ControleFuncao().cadastrar(f);
+            new ControlePedido().cadastrar(p);
         } catch (SQLException ex) {
-            Logger.getLogger(GuiFuncao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GuiPedido.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
-        JOptionPane.showMessageDialog(null, "Função: " + f.getNome() + " Cadastrada");
-        
-    }//GEN-LAST:event_bntgravarActionPerformed
+        JOptionPane.showMessageDialog(null, "Pedido: " + p.getMetragem());
+    }//GEN-LAST:event_bntGravarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,39 +183,39 @@ public class GuiFuncao extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("GTK+".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GuiFuncao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GuiFuncao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GuiFuncao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GuiFuncao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiPedido.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GuiFuncao().setVisible(true);
+                new GuiPedido().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bntgravar;
+    private javax.swing.JButton bntGravar;
+    private javax.swing.JComboBox cboCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtFuncao;
-    private javax.swing.JTextField txtMetro;
-    private javax.swing.JTextField txtSalario;
+    private javax.swing.JTextField txtData;
+    private javax.swing.JTextField txtMetragem;
     // End of variables declaration//GEN-END:variables
 }
