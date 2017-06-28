@@ -110,6 +110,7 @@ public class RelatorioCliente extends javax.swing.JFrame {
 
         txtId.setEditable(false);
         txtId.setAutoscrolls(false);
+        txtId.setEnabled(false);
 
         jLabel1.setText("id:");
 

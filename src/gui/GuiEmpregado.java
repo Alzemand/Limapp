@@ -100,6 +100,7 @@ public class GuiEmpregado extends javax.swing.JFrame {
 
         txtId.setEditable(false);
         txtId.setAutoscrolls(false);
+        txtId.setEnabled(false);
 
         jLabel6.setText("Função: ");
 

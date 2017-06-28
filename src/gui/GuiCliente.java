@@ -85,6 +85,7 @@ public class GuiCliente extends javax.swing.JFrame {
 
         txtId.setEditable(false);
         txtId.setAutoscrolls(false);
+        txtId.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
