@@ -6,6 +6,7 @@
 package model;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,7 +28,7 @@ public class Empregado implements Serializable {
     private String nome;
     @OneToOne
     private Funcao funcao;
-    @OneToOne
+    @OneToOne(mappedBy = "empregado")
     private Servico servico;
 
     public Servico getServico() {

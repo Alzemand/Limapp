@@ -46,6 +46,16 @@ public class RelatorioFuncao extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         listFuncao = new javax.swing.JList();
         bntExportar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txtFuncao = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        txtMetro = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txtSalario = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
+        bntRemover = new javax.swing.JButton();
+        bntAlterar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -93,6 +103,31 @@ public class RelatorioFuncao extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Nome da função:");
+
+        jLabel2.setText("Metro ²:");
+
+        jLabel3.setText("Salário:");
+
+        jLabel6.setText("id:");
+
+        txtId.setEditable(false);
+        txtId.setEnabled(false);
+
+        bntRemover.setText("Remover");
+        bntRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntRemoverActionPerformed(evt);
+            }
+        });
+
+        bntAlterar.setText("Alterar");
+        bntAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntAlterarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,13 +137,35 @@ public class RelatorioFuncao extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(bntExportar)))
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(bntRemover)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(bntAlterar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bntExportar)))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel6))
+                        .addGap(4, 4, 4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtFuncao)
+                                    .addComponent(txtMetro)
+                                    .addComponent(txtSalario))
+                                .addGap(21, 21, 21))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,17 +174,45 @@ public class RelatorioFuncao extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bntExportar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtMetro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bntExportar)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(bntRemover)
+                        .addComponent(bntAlterar)))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void listFuncaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listFuncaoMouseClicked
-
+        try {
+            model.Funcao f = (model.Funcao) listFuncao.getSelectedValue();
+            txtFuncao.setText(f.getNome());
+            txtMetro.setText(f.getMetro());
+            txtSalario.setText(f.getSalario());
+            txtId.setText(f.getId().toString());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Não existe funções");
+        }
         
     }//GEN-LAST:event_listFuncaoMouseClicked
 
@@ -157,6 +242,76 @@ public class RelatorioFuncao extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Relatório gerado");   
         }
     }//GEN-LAST:event_bntExportarActionPerformed
+
+    private void bntRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntRemoverActionPerformed
+        try {
+            if (listFuncao.getSelectedValue() != null) {
+                model.Funcao funcao = new model.Funcao();
+                funcao.setNome(txtFuncao.getText());
+                funcao.setMetro(txtMetro.getText());
+                funcao.setId(Integer.parseInt(txtId.getText()));
+                funcao.setSalario(txtSalario.getText());
+                try {
+                    controleFuncao.excluir(funcao.getId());
+                } catch (SQLException ex) {
+                    Logger.getLogger(model.Empregado.class.getName()).log(Level.SEVERE, null, ex);
+                }}
+                try {
+                    listFuncao.setListData(controleFuncao.listar().toArray());
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, ex);
+                }
+
+                JOptionPane.showMessageDialog(null, "Função removido" )  ;
+            }
+
+            finally{
+
+            }
+            txtFuncao.setText("");
+            txtMetro.setText("");
+            txtId.setText("");
+            txtSalario.setText("");
+    }//GEN-LAST:event_bntRemoverActionPerformed
+
+    private void bntAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAlterarActionPerformed
+        // TODO add your handling code here:
+
+        model.Funcao funcao = new model.Funcao();
+        funcao.setNome(txtFuncao.getText());
+        funcao.setSalario(txtSalario.getText());
+        funcao.setId(Integer.parseInt(txtId.getText()));
+        funcao.setMetro(txtMetro.getText());
+
+        try {
+            controleFuncao.alterar(funcao);
+        } catch (SQLException ex) {
+            Logger.getLogger(model.Servico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            listFuncao.setListData(controleFuncao.listar().toArray());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+
+        txtFuncao.setText("");
+        txtMetro.setText("");
+        txtId.setText("");
+        txtFuncao.setText("");
+
+        try {
+            listFuncao.setListData(controleFuncao.listar().toArray());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+
+        txtFuncao.setText("");
+        txtMetro.setText("");
+        txtId.setText("");
+        txtFuncao.setText("");
+        JOptionPane.showMessageDialog(null, "Função: " + funcao.getNome() + " Atualizada");
+
+    }//GEN-LAST:event_bntAlterarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,11 +356,21 @@ public class RelatorioFuncao extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bntAlterar;
     private javax.swing.JButton bntExportar;
+    private javax.swing.JButton bntRemover;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList listFuncao;
+    private javax.swing.JTextField txtFuncao;
+    private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtMetro;
+    private javax.swing.JTextField txtSalario;
     // End of variables declaration//GEN-END:variables
 }

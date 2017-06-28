@@ -191,7 +191,7 @@ public class RelatorioCliente extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, ex);
                 }
 
-            JOptionPane.showMessageDialog(null, "Cliente: " + " Removido");
+            JOptionPane.showMessageDialog(null, "Cliente removido");
         }
         
         finally{
@@ -200,10 +200,14 @@ public class RelatorioCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_bntRemoverActionPerformed
 
     private void listClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listClienteMouseClicked
-        model.Cliente c = (model.Cliente) listCliente.getSelectedValue();
-        txtNome.setText(c.getNome());
-        txtCnpj.setText(c.getCnpj());
-        txtId.setText(c.getId().toString());
+        try {
+            model.Cliente c = (model.Cliente) listCliente.getSelectedValue();
+            txtNome.setText(c.getNome());
+            txtCnpj.setText(c.getCnpj());
+            txtId.setText(c.getId().toString());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Não existe Clientes");
+        }
         
     }//GEN-LAST:event_listClienteMouseClicked
 

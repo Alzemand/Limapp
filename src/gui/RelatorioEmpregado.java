@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.Empregado;
 import model.Funcao;
 
 /**
@@ -196,7 +197,7 @@ public class RelatorioEmpregado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bntRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntRemoverActionPerformed
-       /* try {   
+       try {   
             if (listEmpregado.getSelectedValue() != null) {
                 model.Empregado empregado = new model.Empregado();
                 empregado.setNome(txtNome.getText());
@@ -214,20 +215,27 @@ public class RelatorioEmpregado extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, ex);
                 }
 
-            JOptionPane.showMessageDialog(null, "Empregado: " + " Removido");
+            JOptionPane.showMessageDialog(null, "Empregado removido" )  ;
         }
         
         finally{
              
-        }*/
-       JOptionPane.showMessageDialog(null, "Essa função será adcionada em breve");
+        }
+       txtNome.setText("");
+       txtMatricula.setText("");
+       txtId.setText("");
+       cboFuncao.setSelectedItem("");
     }//GEN-LAST:event_bntRemoverActionPerformed
 
     private void listEmpregadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listEmpregadoMouseClicked
-        model.Empregado c = (model.Empregado) listEmpregado.getSelectedValue();
-        txtNome.setText(c.getNome());
-        txtMatricula.setText(c.getMatricula());
-        txtId.setText(c.getId().toString());
+        try {
+            model.Empregado c = (model.Empregado) listEmpregado.getSelectedValue();
+            txtNome.setText(c.getNome());
+            txtMatricula.setText(c.getMatricula());
+            txtId.setText(c.getId().toString());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Não existe Empregados");
+        }
         
     }//GEN-LAST:event_listEmpregadoMouseClicked
 
