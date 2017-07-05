@@ -135,7 +135,7 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace pref="193" max="32767" attributes="0"/>
+                      <EmptySpace pref="205" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="bntEmpregado" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="bntFuncao" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -203,12 +203,12 @@
                           <Component id="bntCliente" max="32767" attributes="0"/>
                           <Component id="bntRelatorioCliente" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="35" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="bntRelatorioPedidos" max="32767" attributes="0"/>
-                          <Component id="bntPedido" max="32767" attributes="0"/>
+                      <EmptySpace pref="76" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="bntPedido" min="-2" pref="128" max="-2" attributes="0"/>
+                          <Component id="bntRelatorioPedidos" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="bntServico" min="-2" max="-2" attributes="0"/>
                           <Component id="bntRelatorioServico" min="-2" max="-2" attributes="0"/>
@@ -220,7 +220,7 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace pref="198" max="32767" attributes="0"/>
+                      <EmptySpace pref="210" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="bntCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="bntPedido" alignment="3" min="-2" max="-2" attributes="0"/>
